@@ -1,0 +1,16 @@
+type User {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  name: String!
+  email: String! @unique
+  password: String!
+  image: String!
+  confirmed: Boolean! @default(value: false)
+  forgotPasswordLock: Boolean! @default(value: false)
+  role: Role! @default(value: USER)
+}
+
+enum Role {
+  ADMIN
+  USER
+}

@@ -1,0 +1,29 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  currentUser: User
+}
+
+type Mutation {
+  signup(name: String!, email: String!, password: String!): UserPayload
+  signin(email: String!, password: String!): UserPayload
+  signout: BasicPayload
+  sendForgotPasswordEmail(email: String!): BasicPayload
+  forgotPasswordChange(newPassword: String!, key: String!): BasicPayload
+}
+
+interface Payload {
+  success: Boolean!
+  message: String!
+}
+
+type BasicPayload implements Payload {
+  success: Boolean!
+  message: String!
+}
+
+type UserPayload implements Payload {
+  success: Boolean!
+  message: String!
+  user: User
+}
