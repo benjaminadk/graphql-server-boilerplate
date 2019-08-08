@@ -38,6 +38,14 @@ npm install
 npm install prisma -g
 ```
 
+- create a [Prisma Server](https://www.prisma.io/docs/prisma-server/) for development
+
+- install and run [Redis](https://redis.io)
+
+- to utilize optional OAuth a [Twitter Developer](https://developer.twitter.com/) account and project is needed
+
+- Create a `.env` at the project root with these [Environment Variables](#environment-variables)
+
 ## Usage
 
 ```bash
@@ -57,29 +65,31 @@ npm run dev
 |    `dev`    |         Start server in development         |
 |  `db:drop`  |     Deletes all data in Prisma database     |
 | `db:deploy` | Updates Prisma datamodel & generates schema |
+|  `db:seed`  |       Reset and seed Prisma database        |
+| `db:token`  | Generate and copy Prisma token to clipboard |
 
 ## Environment Variables
-
-- Create a `.env` at the project root with the following keys
 
 ```
 // example
 ADMIN_EMAIL="example@gmail.com"
 ```
 
-|      Name       |            Description            |
-| :-------------: | :-------------------------------: |
-|   ADMIN_EMAIL   |        Your email address         |
-|   ADMIN_PASS    |    Your password for this app     |
-|   EMAIL_HOST    |          SMTP Email Host          |
-|   EMAIL_PASS    |       Email client password       |
-|   EMAIL_USER    |       Email client username       |
-|    FRONTEND     |          URL of frontend          |
-|      PORT       |   Express listens on this port    |
-| PRISMA_ENDPOINT |     HTTP endpoint for Prisma      |
-|  PRISMA_SECRET  | Security for your Prisma endpoint |
-|  PRISMA_TOKEN   |   Used to authenticate seeding    |
-| SESSION_SECRET  |    Security for session cookie    |
+|          Name           |            Description            |
+| :---------------------: | :-------------------------------: |
+|       ADMIN_EMAIL       |        Your email address         |
+|       ADMIN_PASS        |    Your password for this app     |
+|       EMAIL_HOST        |          SMTP Email Host          |
+|       EMAIL_PASS        |       Email client password       |
+|       EMAIL_USER        |       Email client username       |
+|        FRONTEND         |          URL of frontend          |
+|          PORT           |   Express listens on this port    |
+|     PRISMA_ENDPOINT     |     HTTP endpoint for Prisma      |
+|      PRISMA_SECRET      | Security for your Prisma endpoint |
+|      PRISMA_TOKEN       |   Used to authenticate seeding    |
+|     SESSION_SECRET      |    Security for session cookie    |
+|  TWITTER_CONSUMER_KEY   |        Provided by Twitter        |
+| TWITTER_CONSUMER_SECRET |        Provided by Twitter        |
 
 ## Playground
 
@@ -186,4 +196,4 @@ mutation CHANGE_FORGOT_PASS {
 
 ## Acknowledgements
 
-- Shout Out to @benawad for his [GraphQl Typescript Boilerplate](https://github.com/benawad/graphql-ts-server-boilerplate) which inspired the use of [Redis]() and Rate Limitting in this project.
+- Shout Out to @benawad for his [GraphQl Typescript Boilerplate](https://github.com/benawad/graphql-ts-server-boilerplate) which inspired the use of [Redis](https://redis.io) and Rate Limitting in this project.
