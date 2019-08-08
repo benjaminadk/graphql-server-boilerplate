@@ -1,5 +1,6 @@
 type User {
   id: ID! @id
+  twitterId: ID @unique
   createdAt: DateTime! @createdAt
   name: String!
   email: String! @unique

@@ -4,7 +4,7 @@ const sendEmail = require('../../services/email')
 const removeAllUserSessions = require('../../utils/removeAllUserSessions')
 const { forgotPasswordPrefix } = require('../../constants')
 
-module.exports = async (_, args, { url, prisma, redis }, info) => {
+module.exports = async (_, args, { prisma, redis }, info) => {
   // fetch user from prisma database
   const user = await prisma.user({ email: args.email.toLowerCase() })
 
@@ -26,7 +26,7 @@ module.exports = async (_, args, { url, prisma, redis }, info) => {
   // send user email with link
   // TODO
   // create this page on frontend
-  await sendEmail('forgotPassword', user.email, `${url}/change-password/${id}`)
+  await sendEmail('forgotPassword', user.email, `${process.env.BACKEND}/change-password/${id}`)
 
   // success
   return {

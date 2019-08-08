@@ -59,6 +59,7 @@ type Subscription {
 
 type User {
   id: ID!
+  twitterId: ID
   createdAt: DateTime!
   name: String!
   email: String!
@@ -77,6 +78,7 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
+  twitterId: ID
   name: String!
   email: String!
   password: String!
@@ -94,6 +96,8 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  twitterId_ASC
+  twitterId_DESC
   createdAt_ASC
   createdAt_DESC
   name_ASC
@@ -114,6 +118,7 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  twitterId: ID
   createdAt: DateTime!
   name: String!
   email: String!
@@ -143,6 +148,7 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  twitterId: ID
   name: String
   email: String
   password: String
@@ -153,6 +159,7 @@ input UserUpdateInput {
 }
 
 input UserUpdateManyMutationInput {
+  twitterId: ID
   name: String
   email: String
   password: String
@@ -177,6 +184,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  twitterId: ID
+  twitterId_not: ID
+  twitterId_in: [ID!]
+  twitterId_not_in: [ID!]
+  twitterId_lt: ID
+  twitterId_lte: ID
+  twitterId_gt: ID
+  twitterId_gte: ID
+  twitterId_contains: ID
+  twitterId_not_contains: ID
+  twitterId_starts_with: ID
+  twitterId_not_starts_with: ID
+  twitterId_ends_with: ID
+  twitterId_not_ends_with: ID
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -256,6 +277,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  twitterId: ID
   email: String
 }
 `

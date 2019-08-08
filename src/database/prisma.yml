@@ -10,3 +10,7 @@ generate:
 
 seed:
   run: node src/database/seed
+
+hooks:
+  post-deploy:
+    - npm run db:seed

@@ -2,6 +2,7 @@
 
 type Query {
   currentUser: User
+  users: [User]
 }
 
 type Mutation {

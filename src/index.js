@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const passport = require('passport')
 const { ApolloServer } = require('apollo-server-express')
 const { importSchema } = require('graphql-import')
 const session = require('express-session')
@@ -9,6 +10,7 @@ const RateLimitRedisStore = require('rate-limit-redis')
 const { redis } = require('./services/redis')
 const { prisma } = require('./generated')
 const resolvers = require('./resolvers')
+const { TwitterStrategy, twitterRedirect, twitterCallback } = require('./services/twitter')
 const confirmUser = require('./routes/confirmUser')
 const { redisSessionPrefix } = require('./constants')
 
@@ -19,8 +21,7 @@ const server = new ApolloServer({
     req,
     prisma,
     redis,
-    session: req.session,
-    url: `${req.protocol}://${req.get('host')}`
+    session: req.session
   })
 })
 
@@ -28,6 +29,8 @@ const cors = {
   credentials: true,
   origin: process.env.FRONTEND
 }
+
+passport.use(TwitterStrategy)
 
 const app = express()
 
@@ -50,8 +53,6 @@ app.use(
   })
 )
 
-app.get('/confirm/:id', confirmUser)
-
 app.use(
   new RateLimit({
     store: new RateLimitRedisStore({
@@ -62,6 +63,14 @@ app.use(
     delayMs: 0
   })
 )
+
+app.use(passport.initialize())
+
+app.get('/api/twitter', passport.authenticate('twitter'))
+
+app.get('/api/twitter/callback', twitterCallback(), twitterRedirect)
+
+app.get('/confirm/:id', confirmUser)
 
 server.applyMiddleware({ app, cors, path: '/graphql' })
 

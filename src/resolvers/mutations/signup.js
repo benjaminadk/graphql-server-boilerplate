@@ -4,7 +4,7 @@ const v4 = require('uuid/v4')
 const validate = require('../../utils/validate')
 const sendEmail = require('../../services/email')
 
-module.exports = async (_, args, { prisma, redis, url }, info) => {
+module.exports = async (_, args, { prisma, redis }, info) => {
   // validate user input
   validate('signup', args)
 
@@ -35,7 +35,7 @@ module.exports = async (_, args, { prisma, redis, url }, info) => {
   await redis.set(id, user.id, 'ex', 60 * 60 * 24)
 
   // send user email with link to confirm their email address
-  await sendEmail('confirm', user.email, `${url}/confirm/${id}`)
+  await sendEmail('confirm', user.email, `${process.env.BACKEND}/confirm/${id}`)
 
   // success payload
   return {

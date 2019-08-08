@@ -104,6 +104,8 @@ export interface ClientConstructor<T> {
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "twitterId_ASC"
+  | "twitterId_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "name_ASC"
@@ -127,6 +129,7 @@ export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
+  twitterId?: Maybe<ID_Input>;
   name: String;
   email: String;
   password: String;
@@ -151,6 +154,20 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  twitterId?: Maybe<ID_Input>;
+  twitterId_not?: Maybe<ID_Input>;
+  twitterId_in?: Maybe<ID_Input[] | ID_Input>;
+  twitterId_not_in?: Maybe<ID_Input[] | ID_Input>;
+  twitterId_lt?: Maybe<ID_Input>;
+  twitterId_lte?: Maybe<ID_Input>;
+  twitterId_gt?: Maybe<ID_Input>;
+  twitterId_gte?: Maybe<ID_Input>;
+  twitterId_contains?: Maybe<ID_Input>;
+  twitterId_not_contains?: Maybe<ID_Input>;
+  twitterId_starts_with?: Maybe<ID_Input>;
+  twitterId_not_starts_with?: Maybe<ID_Input>;
+  twitterId_ends_with?: Maybe<ID_Input>;
+  twitterId_not_ends_with?: Maybe<ID_Input>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -229,6 +246,7 @@ export interface UserWhereInput {
 }
 
 export interface UserUpdateInput {
+  twitterId?: Maybe<ID_Input>;
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
@@ -239,6 +257,7 @@ export interface UserUpdateInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  twitterId?: Maybe<ID_Input>;
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
@@ -261,6 +280,7 @@ export interface UserSubscriptionWhereInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  twitterId?: Maybe<ID_Input>;
   email?: Maybe<String>;
 }>;
 
@@ -287,6 +307,7 @@ export interface UserEdgeSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  twitterId?: ID_Output;
   createdAt: DateTimeOutput;
   name: String;
   email: String;
@@ -301,6 +322,7 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  twitterId: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -315,6 +337,7 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -407,6 +430,7 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface User {
   id: ID_Output;
+  twitterId?: ID_Output;
   createdAt: DateTimeOutput;
   name: String;
   email: String;
@@ -419,6 +443,7 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  twitterId: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -433,6 +458,7 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -447,6 +473,7 @@ export interface UserNullablePromise
   extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  twitterId: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
   email: () => Promise<String>;
