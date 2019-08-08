@@ -19,32 +19,67 @@ Basic starter for a modern GraphQL backend. Powered by Express, Apollo and Prism
 
 ## Installation
 
-- clone this repository to your local machine
+- Clone this repository to your local machine
 
 ```bash
 git clone https://github.com/benjaminadk/graphql-server-boilerplate.git
 ```
 
-- install dependencies
+- Install dependencies
 
 ```bash
 cd graphql-server-boilerplate
 npm install
 ```
 
-- download the Prisma CLI
+## Prisma
+
+Download the Prisma CLI
 
 ```bash
 npm install prisma -g
 ```
 
-- create a [Prisma Server](https://www.prisma.io/docs/prisma-server/) for development
+Create a [Prisma Server](https://www.prisma.io/docs/prisma-server/) for development
 
-- install and run [Redis](https://redis.io)
+## Redis
 
-- to utilize optional OAuth a [Twitter Developer](https://developer.twitter.com/) account and project is needed
+- Install and run [Redis](https://redis.io)
 
-- Create a `.env` at the project root with these [Environment Variables](#environment-variables)
+## Twitter OAuth
+
+- To utilize optional OAuth a [Twitter Developer](https://developer.twitter.com/) account and project is needed
+
+## Environment Variables
+
+Create a `.env` at the project root with these [Environment Variables](#environment-variables)
+
+```
+// example
+ADMIN_EMAIL="example@gmail.com"
+```
+
+|          Name           |            Description            |
+| :---------------------: | :-------------------------------: |
+|       ADMIN_EMAIL       |        Your email address         |
+|       ADMIN_PASS        |    Your password for this app     |
+|         BACKEND         |          URL of backend           |
+|       EMAIL_HOST        |          SMTP Email Host          |
+|       EMAIL_PASS        |       Email client password       |
+|       EMAIL_USER        |       Email client username       |
+|        FRONTEND         |          URL of frontend          |
+|          PORT           |   Express listens on this port    |
+|     PRISMA_ENDPOINT     |     HTTP endpoint for Prisma      |
+|      PRISMA_SECRET      | Security for your Prisma endpoint |
+|      PRISMA_TOKEN       |   Used to authenticate seeding    |
+|      SESSION_NAME       |          Name of session          |
+|     SESSION_SECRET      |    Security for session cookie    |
+|  TWITTER_CONSUMER_KEY   |        Provided by Twitter        |
+| TWITTER_CONSUMER_SECRET |        Provided by Twitter        |
+
+## Email
+
+Create [Mail Trap](https://mailtrap.io/) or equivilant account to test email service
 
 ## Usage
 
@@ -68,32 +103,27 @@ npm run dev
 |  `db:seed`  |       Reset and seed Prisma database        |
 | `db:token`  | Generate and copy Prisma token to clipboard |
 
-## Environment Variables
+## Testing
 
-```
-// example
-ADMIN_EMAIL="example@gmail.com"
-```
-
-|          Name           |            Description            |
-| :---------------------: | :-------------------------------: |
-|       ADMIN_EMAIL       |        Your email address         |
-|       ADMIN_PASS        |    Your password for this app     |
-|       EMAIL_HOST        |          SMTP Email Host          |
-|       EMAIL_PASS        |       Email client password       |
-|       EMAIL_USER        |       Email client username       |
-|        FRONTEND         |          URL of frontend          |
-|          PORT           |   Express listens on this port    |
-|     PRISMA_ENDPOINT     |     HTTP endpoint for Prisma      |
-|      PRISMA_SECRET      | Security for your Prisma endpoint |
-|      PRISMA_TOKEN       |   Used to authenticate seeding    |
-|     SESSION_SECRET      |    Security for session cookie    |
-|  TWITTER_CONSUMER_KEY   |        Provided by Twitter        |
-| TWITTER_CONSUMER_SECRET |        Provided by Twitter        |
+- Coming Soon
 
 ## Playground
 
 - Helpful `Query` and `Mutation` setup to test backend flows
+  - SIGNUP - create user in database
+  - SIGNIN_1 - should throw error due to user not being confirmed
+  - Check testing email account and click confirm link
+  - SIGNIN_1 - should work now
+  - USER - session cookie should be read
+  - SIGNOUT - should clear session
+  - USER - should return `null`
+  - FORGOT_PASSWORD - locks account
+  - SIGNIN_1 - should throw account locked error
+  - Check testing email and click link - copy id param
+  - CHANGE_FORGOT_PASS - replace `key` with id from last step
+  - SIGNIN_1 - should throw password mismatch error
+  - SIGNIN_2 - should work
+  - USER - should work
 
 ```graphql
 # Reads cookie to get current user

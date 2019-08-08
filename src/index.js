@@ -40,7 +40,7 @@ app.use(
       client: redis,
       prefix: redisSessionPrefix
     }),
-    name: 'prisma.bp',
+    name: process.env.SESSION_NAME,
     secret: process.env.SESSION_SECRET,
     resave: false,
     rolling: false,
@@ -75,5 +75,5 @@ app.get('/confirm/:id', confirmUser)
 server.applyMiddleware({ app, cors, path: '/graphql' })
 
 app.listen({ port: process.env.PORT }, () =>
-  console.log(`Server up at http://localhost:${process.env.PORT}`)
+  console.log(`Server up at http://localhost:${process.env.PORT}/graphql`)
 )

@@ -26,6 +26,4 @@ module.exports = async (type, to, url) => {
   }
 
   const res = await transport.sendMail(payload)
-
-  console.log(res)
 }
