@@ -66,5 +66,5 @@ app.use(
 server.applyMiddleware({ app, cors, path: '/graphql' })
 
 app.listen({ port: process.env.PORT }, () =>
-  console.log(`Server listening on port ${process.env.PORT}`)
+  console.log(`Server up at http://localhost:${process.env.PORT}`)
 )
